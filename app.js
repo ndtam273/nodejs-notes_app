@@ -1,4 +1,7 @@
-const name = require('./utils.js')
+const chalk = require('chalk')
+const getNotes = require('./notes.js')
 
-console.log(name)
+const getNotesExample = getNotes()
+console.log(getNotesExample);
 
+console.log(chalk.green.bold.inverse('Success!'))
