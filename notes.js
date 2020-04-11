@@ -4,13 +4,25 @@ const fs = require("fs");
 const getNotes = () => {
   return "Your notes...";
 };
+const readNote = (title) => {
+  const notes = loadNotes();
+  const searchNote = notes.find((note) => note.title === title)
+  
+  if (searchNote) {
+     console.log(chalk.green.inverse('found a note:'))
+     console.log('title: ' + searchNote.title + ' body: ' + searchNote.body )
+  } else {
+    console.log(chalk.red.inverse('Not found'))
+  }
+}
 const addNote = (title, body) => {
   const notes = loadNotes();
-  const duplicateNotes = notes.filter(function (note) {
-    return note.title === title;
-  });
 
-  if (duplicateNotes.length === 0) {
+  const duplicateNote = notes.find((note) => note.title === title)
+
+  debugger
+
+  if (!duplicateNote) {
     notes.push({
       title: title,
       body: body,
@@ -36,7 +48,11 @@ const loadNotes =  () => {
     return [];
   }
 };
-
+const listNotes = () => {
+  console.log(chalk.yellow.inverse('Your note:'))
+  const notes = loadNotes()
+  notes.forEach( (note) => console.log(note.title))
+}
 const removeNote = (title) => {
   const notes = loadNotes()
   const afterRemoveNotes = notes.filter(function (note) {
@@ -53,5 +69,7 @@ const removeNote = (title) => {
 module.exports = {
   getNotes: getNotes,
   addNote: addNote,
-  removeNote: removeNote
+  removeNote: removeNote,
+  listNotes: listNotes,
+  readNote: readNote
 };
