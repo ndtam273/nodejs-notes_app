@@ -7,16 +7,27 @@ const shortNames = names.filter((name) => {
    return name.length <= 4
 })
 
-const geocode = (address, callback) => {
+// const geocode = (address, callback) => {
+//     setTimeout(() => {
+//         const data = {
+//             latitude: 0,
+//             longtitude: 0
+//         }
+//         callback(data)
+//     }, 2000)
+// }
+
+// geocode('Da Nang', (data) => {
+//    console.log(data)
+// })
+
+const add = (a, b, callback) => {
     setTimeout(() => {
-        const data = {
-            latitude: 0,
-            longtitude: 0
-        }
-        callback(data)
+       callback(a + b)
     }, 2000)
 }
 
-geocode('Da Nang', (data) => {
-   console.log(data)
+add(10,100, (sum) => {
+    console.log(sum)
 })
+
